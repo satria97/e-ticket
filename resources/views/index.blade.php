@@ -34,7 +34,7 @@
     <section class="hero">
         <div class="p-4 mb-0">
             <div class="container-fluid text-center">
-                <h1 class="display-4 fw-bold">Best Seller</h1>
+                <h1 class="display-4 fw-bold text-black">Best Seller</h1>
                 <div class="row pt-4">
                     <div class="col-md-4">
                         <div class="home-img text-center">
@@ -170,7 +170,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <img src="{{ asset('img/Rectangle13.jpg') }}" alt="" width="30" height="24" class="d-inline-block align-text-top">
-            Mahardika Ticket
+                    Mahardika Ticket
                 </div>
                 <div class="col-md-3">
                     <div class="copyright text-end">

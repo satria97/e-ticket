@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\TicketController as AdminTicketController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +25,23 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/insert', [AdminEventController::class, 'insert']);
         Route::post('/insert-proses',[AdminEventController::class, 'insertAction']);
         Route::get('/edit/{id}',[AdminEventController::class, 'edit']);
-        Route::PUT('/{id}', [AdminEventController::class, 'update']);
+        Route::put('/{id}', [AdminEventController::class, 'update']);
         Route::get('/delete/{id}', [AdminEventController::class, 'delete']);
+    });
+    Route::prefix('ticket')->group(function() {
+        Route::get('/', [AdminTicketController::class, 'index']);
+        Route::get('/insert', [AdminTicketController::class, 'insert']);
+        Route::post('/insert-proses', [AdminTicketController::class, 'InsertAction']);
+        Route::get('/edit/{id}', [AdminTicketController::class, 'edit']);
+        Route::put('/{id}',[AdminTicketController::class, 'update']);
+        Route::get('/delete/{id}', [AdminTicketController::class, 'delete']);
+    });
+    Route::prefix('order')->group(function() {
+        Route::get('/', [AdminOrderController::class, 'index']);
+        Route::get('/insert', [AdminOrderController::class, 'insert']);
+        Route::post('/insert-proses',[AdminOrderController::class, 'insertAction']);
+        Route::get('/edit/{id}', [AdminOrderController::class,'edit']);
+        Route::put('/{id}' ,[AdminOrderController::class, 'update']);
+        Route::get('/delete/{id}', [AdminOrderController::class, 'delete']);
     });
 });

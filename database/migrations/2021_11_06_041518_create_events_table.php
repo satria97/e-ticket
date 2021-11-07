@@ -18,7 +18,8 @@ class CreateEventsTable extends Migration
             $table->string('nm_event');
             $table->string('slug');
             $table->date('tgl_event');
-            $table->timestamp('jam');
+            $table->time('jam_mulai');
+            $table->time('jam_selesai');
             $table->string('lokasi');
             $table->text('deskripsi');
             $table->timestamps();

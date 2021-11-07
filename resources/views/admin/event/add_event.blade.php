@@ -77,7 +77,7 @@
                                 <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
                                 <div class="col-sm-4">
                                     <textarea name="deskripsi" id="" rows="5" class="form-control @error('deskripsi') is-invalid                                        
-                                    @enderror" value="{{ old('deskripsi') }}"></textarea>
+                                    @enderror">{{ old('deskripsi') }}</textarea>
                                 </div>
                                 @error('deskripsi')
                                     <div class="alert alert-danger">{{ $message }}</div>

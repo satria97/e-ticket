@@ -16,7 +16,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="float-sm-right">
-                                    <a href="{{ url('admin/event/insert') }}" class="btn btn-primary"><i class="fas fa-plus"></i>Tambah</a>
+                                    <a href="{{ url('admin/event/insert') }}" class="btn btn-success"><i class="fas fa-plus"></i>Tambah</a>
                                 </div>
                             </div>
                         </div>
@@ -47,8 +47,8 @@
                                         <td>{{ $i++ }}</td>
                                         <td>{{ $row->nm_event }}</td>
                                         <td>{{ $row->slug }}</td>
-                                        <td>{{ $row->tgl_event }}</td>
-                                        <td>{{ $row->jam }}</td>
+                                        <td>{{ date('j F Y', strtotime($row->tgl_event)) }}</td>
+                                        <td>{{ $row->jam_mulai }} - {{ $row->jam_selesai }}</td>
                                         <td>{{ $row->lokasi }}</td>
                                         <td>{{ $row->deskripsi }}</td>
                                         <td>

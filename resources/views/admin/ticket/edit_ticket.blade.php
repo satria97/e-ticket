@@ -11,7 +11,7 @@
                         <h3 class="card-title">Edit Ticket</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('/admin/ticket/'.$events->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('/admin/ticket/'.$tickets->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="form-group row">
@@ -42,7 +42,7 @@
                                 <label for="stok" class="col-sm-2 col-form-label">Stok</label>
                                 <div class="col-sm-4">
                                     <input type="text" name="stok" class="form-control @error('stok') is-invalid                                        
-                                    @enderror" value="{{ old('stok',$events->stok) }}">
+                                    @enderror" value="{{ old('stok',$tickets->stok) }}">
                                 </div>
                                 @error('stok')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -52,9 +52,38 @@
                                 <label for="diskon" class="col-sm-2 col-form-label">Diskon</label>
                                 <div class="col-sm-4">
                                     <input type="text" name="diskon" class="form-control @error('diskon') is-invalid                                        
-                                    @enderror" value="{{ old('diskon', $events->diskon) }}">
+                                    @enderror" value="{{ old('diskon', $tickets->diskon) }}">
                                 </div>
                                 @error('diskon')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group row">
+                                <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <img src="{{ asset('storage/images/' . $tickets->gambar) }}" height="100" width="100">
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control  @error('gambar') is-invalid @enderror" name="gambar" value="{{old('gambar',$tickets->gambar)}}">
+                                        </div>
+                                        @error('gambar')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-2 col-form-label">Status Tiket</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select @error('status') is-invalid @enderror" name="status">
+                                        <option selected>{{ $tickets->status }}</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Tidak Aktif">Tidak Aktif</option>
+                                    </select>
+                                </div>
+                                @error('status')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>

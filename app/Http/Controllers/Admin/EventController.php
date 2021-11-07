@@ -46,7 +46,7 @@ class EventController extends Controller
     public function edit($id)
     {
         $events = Event::findOrFail($id);
-        return view('admin.ticket.edit_ticket', compact('events'));
+        return view('admin.event.edit_event', compact('events'));
     }
 
     public function update(Request $request, $id)

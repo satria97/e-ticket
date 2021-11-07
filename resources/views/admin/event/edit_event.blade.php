@@ -38,7 +38,7 @@
                                 <label for="tgl_event" class="col-sm-2 col-form-label">Tanggal Event</label>
                                 <div class="col-sm-4">
                                     <input type="date" name="tgl_event" class="form-control @error('tgl_event') is-invalid
-                                    @enderror" value="{{ old('tgl_event', $events->slug) }}">
+                                    @enderror" value="{{ old('tgl_event', $events->tgl_event) }}">
                                 </div>
                                 @error('tgl_event')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -77,13 +77,14 @@
                             <div class="form-group row">
                                 <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
                                 <div class="col-sm-4">
-                                    <textarea name="text" id="" rows="5" class="form-control @error('deskripsi') is-invalid                                        
-                                    @enderror" value="{{ old('deskripsi', $events->deskripsi) }}"></textarea>
+                                    <textarea name="deskripsi" id="" rows="5" class="form-control @error('deskripsi') is-invalid                                        
+                                    @enderror">{{ old('deskripsi', $events->deskripsi) }}</textarea>
                                 </div>
                                 @error('deskripsi')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-sm-4">
                                     <button type="submit" class="btn btn-primary">Update</button>

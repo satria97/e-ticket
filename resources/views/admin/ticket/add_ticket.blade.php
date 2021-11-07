@@ -20,7 +20,7 @@
                                     @enderror">
                                         <option value="">--Pilih Event--</option>
                                         @foreach ($events as $row)
-                                            <option value="{{ $row->id }}">{{ $nm_event }}</option>
+                                            <option value="{{ $row->id }}">{{ $row->nm_event }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -59,8 +59,30 @@
                                 @enderror
                             </div>
                             <div class="form-group row">
+                                <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
                                 <div class="col-sm-4">
-                                    <button type="submit" class="btn btn-succes">Simpan</button>
+                                    <input type="file" class="form-control  @error('gambar') is-invalid @enderror" name="gambar" value="{{ old('gambar') }}">
+                                </div>
+                                @error('gambar')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group row">
+                                <label for="status" class="col-sm-2 col-form-label">Status Tiket</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select @error('status') is-invalid @enderror" name="status">
+                                        <option value="">--Pilih--</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Tidak Aktif">Tidak Aktif</option>
+                                    </select>
+                                </div>
+                                @error('status')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                     <a href="{{ url('admin/ticket') }}" class="btn btn-secondary">Batal</a>
                                 </div>
                             </div>

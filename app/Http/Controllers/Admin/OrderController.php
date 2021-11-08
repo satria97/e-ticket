@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\OrderItem;
 use App\Models\Ticket;
+use App\Models\Event;
 
 class OrderController extends Controller
 {
@@ -39,11 +40,11 @@ class OrderController extends Controller
     public function insertItem($id)
     {
         $data['id'] = $id;
-        $data['tickets'] = Ticket::get();
+        $data['tickets'] = DB::table('tickets')->join('events', 'events.id','=','tickets.event_id')->get();
         $data['order_items'] = DB::table('order_items')->join('tickets', 'tickets.id','=','order_items.ticket_id')
         ->where('order_id', $id)
         ->orderBy('order_items.id','DESC')->get();
-        return view('admin/order/insert_item', $data);
+        return view('admin/order/add_item', $data);
     }
     public function insertItemAction(Request $request)
     {
@@ -73,7 +74,7 @@ class OrderController extends Controller
     {
         $orders = Order::findOrFail($id);
         $users = User::get();
-        return view('admin/order/edit', compact('orders','users'));
+        return view('admin/order/edit_order', compact('orders','users'));
     }
     public function update(Request $request, $id)
     {

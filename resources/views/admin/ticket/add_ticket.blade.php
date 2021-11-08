@@ -24,10 +24,10 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                @error('event_id')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            @error('event_id')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                             <div class="form-group row">
                                 <label for="harga" class="col-sm-2 col-form-label">Harga</label>
                                 <div class="col-sm-4">

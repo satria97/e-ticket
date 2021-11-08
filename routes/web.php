@@ -40,8 +40,14 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', [AdminOrderController::class, 'index']);
         Route::get('/insert', [AdminOrderController::class, 'insert']);
         Route::post('/insert-proses',[AdminOrderController::class, 'insertAction']);
+        Route::get('/insert_item/{id}', [AdminOrderController::class, 'insertItem']);
+        Route::post('/insert_item-proses/{id}', [AdminOrderController::class, 'insertItemAction']);
         Route::get('/edit/{id}', [AdminOrderController::class,'edit']);
         Route::put('/{id}' ,[AdminOrderController::class, 'update']);
         Route::get('/delete/{id}', [AdminOrderController::class, 'delete']);
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

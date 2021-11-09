@@ -17,6 +17,7 @@ class CreateOrderItemsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('order_id');
             $table->unsignedInteger('ticket_id');
+            $table->integer('qty');
             $table->integer('subtotal');
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('ticket_id')->references('id')->on('tickets');

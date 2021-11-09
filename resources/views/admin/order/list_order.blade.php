@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover mb-2">
                             <thead>
                                 <tr>
                                     <th class="col-1">No</th>
@@ -48,11 +48,15 @@
                                         <td>
                                             <a href="{{ url('admin/order/edit/'.$row->id) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                                             <a href="{{ url('admin/order/delete/'.$row->id) }}" onclick="return confirm('Are you sure?')";><button type="button" class="btn btn-sm btn-danger fa fa-trash-alt"></button></a>
+                                            <a href="{{url('admin/order/item/'.$row->id)}}" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-plus"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $orders->links() }}
                     </div>
                 </div>
             </div>

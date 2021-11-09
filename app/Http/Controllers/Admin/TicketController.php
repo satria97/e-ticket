@@ -10,6 +10,10 @@ use App\Models\Ticket;
 
 class TicketController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $tickets = Ticket::with('event')->orderBy('id','DESC')->get();
@@ -27,7 +31,6 @@ class TicketController extends Controller
             'gambar' => 'required|mimes:jpg,jpeg,png,bmp|max:2048',
             'harga' => 'required|integer',
             'stok' => 'required|integer',
-            'diskon' => 'required',
             'status' => 'required'
         ]);
         if ($request->hasFile('gambar')) {
@@ -43,7 +46,6 @@ class TicketController extends Controller
         $tickets->event_id = $request->input('event_id');
         $tickets->harga = $request->input('harga');
         $tickets->stok = $request->input('stok');
-        $tickets->diskon = $request->input('diskon');
         $tickets->gambar = $imageName;
         $tickets->status = $request->input('status');
         $tickets->save();
@@ -62,7 +64,6 @@ class TicketController extends Controller
             'gambar' => 'required|mimes:jpg,jpeg,png,bmp|max:2048',
             'harga' => 'required|integer',
             'stok' => 'required|integer',
-            'diskon' => 'required',
             'status' => 'required'
         ]);
         $tickets = Ticket::findOrFail($id);
@@ -80,14 +81,12 @@ class TicketController extends Controller
             $tickets->gambar = $imageName;
             $tickets->harga = $request->input('harga');
             $tickets->stok = $request->input('stok');
-            $tickets->diskon = $request->input('diskon');
             $tickets->status = $request->input('status');
             $tickets->save();
         } else {
             $tickets->event_id = $request->input('event_id');
             $tickets->harga = $request->input('harga');
             $tickets->stok = $request->input('stok');
-            $tickets->diskon = $request->input('diskon');
             $tickets->status = $request->input('status');
             $tickets->save();
         }

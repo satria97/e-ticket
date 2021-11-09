@@ -11,7 +11,7 @@
                         <h3 class="card-title">Tambah Item</h3>
                     </div>
                     <div class="card-body">
-                        <form action="{{ url('admin/order/insert_item-proses/'. $id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('admin/order/item-proses/'. $id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <div class="col-sm-4">
@@ -22,7 +22,8 @@
                                 <label for="ticket_id" class="col-sm-2 col-form-label">Nama Ticket</label>
                                 <div class="col-sm-4">
                                     <select name="ticket_id" id="" class="form-select @error('ticket_id') is-invalid @enderror">
-                                        @foreach ($ticket as $row)
+                                        <option value="">--Pilih--</option>
+                                        @foreach ($tickets as $row)
                                             <option value="{{ $row->id }}">{{ $row->nm_event }}</option>
                                         @endforeach
                                     </select>
@@ -49,7 +50,7 @@
                         </form>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover mb-2">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -63,23 +64,24 @@
                                     if(empty($_GET['page']))
                                     $i=1;
                                     else
-                                    $i= ($_GET['page'] * $order_item->count()) - ($order_item->count() - 1);
+                                    $i= ($_GET['page'] * $order_items->count()) - ($order_items->count() - 1);
                                 @endphp
                                 @foreach ($order_items as $row)
                                 <tr>
                                     <td>{{ $i++ }}</td>
-                                    <td>{{ $row->event->nm_event }}</td>
+                                    <td>{{ $row->nm_event }}</td>
                                     <td>{{ $row->qty }}</td>
                                     <td>
-                                        <a href="{{url('admin/order/insert_item/'.$row->order_id.'/edit/'.$row->id)}}" class="btn btn-sm btn-warning">
+                                        <a href="{{url('admin/order/item/'.$row->order_id.'/edit/'.$row->id)}}" class="btn btn-sm btn-warning">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a href="{{url('admin/order/insert_item/'.$row->order_id.'/delete/'.$row->id)}}" onclick="return confirm('Are you sure?')" ;><button type="button" class="btn btn-sm btn-danger fa fa-trash-alt"></button></a>
+                                        <a href="{{url('admin/order/item/'.$row->order_id.'/delete/'.$row->id)}}" onclick="return confirm('Are you sure?')" ;><button type="button" class="btn btn-sm btn-danger fa fa-trash-alt"></button></a>
                                     </td>
                                 </tr>                          
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $order_items->links() }}
                     </div>
                 </div>
             </div>

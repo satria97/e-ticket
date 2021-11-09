@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\TicketController as AdminTicketController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +20,12 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin/dashboard');
-});
-Route::group(['prefix' => 'admin'], function () {
+// Route::get('/', function () {
+//     return view('admin/dashboard');
+// });
+Route::get('/home', [HomeController::class, 'index']);
+Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => 'is_admin'], function () {
+    Route::get('/', [AdminDashboardController::class, 'index']);
     Route::prefix('event')->group(function() {
         Route::get('/', [AdminEventController::class, 'index']);
         Route::get('/insert', [AdminEventController::class, 'insert']);
@@ -40,8 +46,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', [AdminOrderController::class, 'index']);
         Route::get('/insert', [AdminOrderController::class, 'insert']);
         Route::post('/insert-proses',[AdminOrderController::class, 'insertAction']);
-        Route::get('/insert_item/{id}', [AdminOrderController::class, 'insertItem']);
-        Route::post('/insert_item-proses/{id}', [AdminOrderController::class, 'insertItemAction']);
+        Route::get('/item/{id}', [AdminOrderController::class, 'insertItem']);
+        Route::post('/item-proses/{id}', [AdminOrderController::class, 'insertItemAction']);
         Route::get('/edit/{id}', [AdminOrderController::class,'edit']);
         Route::put('/{id}' ,[AdminOrderController::class, 'update']);
         Route::get('/delete/{id}', [AdminOrderController::class, 'delete']);
@@ -49,5 +55,3 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

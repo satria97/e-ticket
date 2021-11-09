@@ -49,16 +49,6 @@
                                 @enderror
                             </div>
                             <div class="form-group row">
-                                <label for="diskon" class="col-sm-2 col-form-label">Diskon</label>
-                                <div class="col-sm-4">
-                                    <input type="text" name="diskon" class="form-control @error('diskon') is-invalid                                        
-                                    @enderror" value="{{ old('diskon') }}">
-                                </div>
-                                @error('diskon')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group row">
                                 <label for="gambar" class="col-sm-2 col-form-label">Gambar</label>
                                 <div class="col-sm-4">
                                     <input type="file" class="form-control  @error('gambar') is-invalid @enderror" name="gambar" value="{{ old('gambar') }}">

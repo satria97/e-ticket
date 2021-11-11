@@ -17,7 +17,7 @@ class CreateDiscountsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('ticket_id');
             $table->integer('harga_akhir')->nullable();
-            $table->decimal('diskon_persen')->nullable();
+            $table->integer('diskon_persen')->nullable();
             $table->foreign('ticket_id')->references('id')->on('tickets');
             $table->timestamps();
         });

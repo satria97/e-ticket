@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
     <!-- Navbar start -->
@@ -37,37 +39,9 @@
         </div>
     </nav>
     <!-- Navbar end -->
-    <!-- Hero start -->
-    <section class="hero">
-        <div class="p-4 mb-0">
-            <div class="container-fluid text-center">
-                <h1 class="display-4 fw-bold text-black">Best Seller</h1>
-                <div class="row pt-4">
-                    <div class="col-md-4">
-                        <div class="home-img text-center">
-                            <img class="gambar" src="{{ asset('img/Rectangle7.jpg') }}" alt="profile img" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="home-img text-center">
-                            <img class="gambar" src="{{ asset('img/Rectangle8.jpg') }}" alt="profile img" />
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="home-img text-center">
-                            <img class="gambar" src="{{ asset('img/Rectangle9.jpg') }}" alt="profile img" />
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Hero end -->
-    <!-- Ticket start -->
-    <section class="ticket px-4 py-5">
-        @yield('content')
-    </section>
-    <!-- Ticket end -->
+    <!-- Content start -->
+    @yield('content')
+    <!-- Content end -->
     <!-- Footer start -->
     <footer class="bg-light mx-4 py-5">
         <div class="container-fluid">
@@ -94,5 +68,6 @@
         Swal.fire("{{ session('message') }}");
     </script>
     @endif
+    @stack('scrips')
 </body>
 </html>

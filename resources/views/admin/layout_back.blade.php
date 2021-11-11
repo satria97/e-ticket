@@ -90,13 +90,15 @@
                   <p>Ticket</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ url('admin/order') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Order</p>
-                </a>
-              </li>
             </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url('admin/order') }}" class="nav-link">
+              <i class="nav-icon fa fa-cart-arrow-down"></i>
+              <p>
+                Transaksi
+              </p>
+            </a>
           </li>
         </ul>
       </nav>

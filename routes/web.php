@@ -24,6 +24,9 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 //     return view('admin/dashboard');
 // });
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/booking', [CartController::class, 'insert']);
+Route::get('/ticket/{slug}', [HomeController::class, 'detail']);
+Route::post('/ticket/booking-proses', [HomeController::class, 'booking']);
 Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'middleware' => 'is_admin'], function () {
     Route::get('/', [AdminDashboardController::class, 'index']);
     Route::prefix('event')->group(function() {

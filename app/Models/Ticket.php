@@ -21,4 +21,5 @@ class Ticket extends Model
     {
         return $this->hasMany(Discount::class);
     }
+    
 }
